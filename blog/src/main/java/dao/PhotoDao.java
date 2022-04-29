@@ -57,12 +57,12 @@ public class PhotoDao {
 	
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, photo.photoName);
+		stmt.setString(1, photo.getPhotoName());
 		// 이 부분 제대로 구현한것일까? 
-		stmt.setString(2, photo.photoOriginalName);
-		stmt.setString(3, photo.photoType);
-		stmt.setString(4, photo.photoPw);
-		stmt.setString(5, photo.writer);
+		stmt.setString(2, photo.getPhotoOriginalName());
+		stmt.setString(3, photo.getPhotoType());
+		stmt.setString(4, photo.getPhotoPw());
+		stmt.setString(5, photo.getWriter());
 		
 		int row = stmt.executeUpdate();
 		if(row == 1) {
@@ -114,8 +114,8 @@ public class PhotoDao {
 		rs = stmt.executeQuery();
 		while(rs.next()) {
 			Photo p = new Photo();
-			p.photoNo = rs.getInt("photoNo");
-			p.photoName = rs.getString("photoName");
+			p.setPhotoNo(rs.getInt("photoNo"));
+			p.setPhotoName(rs.getString("photoName"));
 			list.add(p);
 		}
 		return list;
@@ -146,8 +146,8 @@ public class PhotoDao {
 		rs = stmt.executeQuery();
 		if (rs.next()) {
 			photo = new Photo(); // 생성자메서드
-			photo.photoNo = rs.getInt("photoNo");
-			photo.photoName = rs.getString("photoName");
+			photo.setPhotoNo(rs.getInt("photoNo"));
+			photo.setPhotoName(rs.getString("photoName"));
 		}
 		 rs.close();
 		 stmt.close();

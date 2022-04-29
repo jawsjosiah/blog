@@ -56,12 +56,12 @@ public class PdfDao {
 	
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, pdf.pdfName);
+		stmt.setString(1, pdf.getPdfName());
 		// 이 부분 제대로 구현한것일까? 
-		stmt.setString(2, pdf.pdfOriginalName);
-		stmt.setString(3, pdf.pdfType);
-		stmt.setString(4, pdf.pdfPw);
-		stmt.setString(5, pdf.writer);
+		stmt.setString(2, pdf.getPdfOriginalName());
+		stmt.setString(3, pdf.getPdfType());
+		stmt.setString(4, pdf.getPdfPw());
+		stmt.setString(5, pdf.getWriter());
 		
 		int row = stmt.executeUpdate();
 		if(row == 1) {
@@ -126,10 +126,10 @@ public class PdfDao {
 			// 데이터 변환(가공)
 			while (rs.next()) {
 				Pdf p = new Pdf();
-				p.pdfNo = rs.getInt("pdfNo");
-				p.pdfName = rs.getString("pdfName");
-				p.writer = rs.getString("writer");
-				p.createDate = rs.getString("createDate");
+				p.setPdfNo(rs.getInt("pdfNo"));
+				p.setPdfName(rs.getString("pdfName"));
+				p.setWriter(rs.getString("writer"));
+				p.setCreateDate(rs.getString("createDate"));
 				list.add(p);
 			}
 			
@@ -164,8 +164,8 @@ public class PdfDao {
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				pdf = new Pdf(); // 생성자메서드
-				pdf.pdfNo = rs.getInt("pdfNo");
-				pdf.pdfName = rs.getString("pdfName");
+				pdf.setPdfNo(rs.getInt("pdfNo"));
+				pdf.setPdfName(rs.getString("pdfName"));
 			}
 			 rs.close();
 			 stmt.close();

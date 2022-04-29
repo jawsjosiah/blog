@@ -45,10 +45,10 @@ public class BoardDao {
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		// 쿼리를 저장한다. 
 		
-		stmt.setString(1, board.categoryName);
-		stmt.setString(2, board.boardTitle);
-		stmt.setString(3, board.boardContent);
-		stmt.setString(4, board.boardPw);
+		stmt.setString(1, board.getCategoryName());
+		stmt.setString(2, board.getBoardTitle());
+		stmt.setString(3, board.getBoardContent());
+		stmt.setString(4, board.getBoardPw());
 		// stmt에서 ? 표현식 값에 들어갈 자리와 들어갈 값들을 기술한다. 
 		
 		int row = stmt.executeUpdate(); 
@@ -158,11 +158,11 @@ public class BoardDao {
 		// 문자열 변수에 실행하려는 쿼리문 작성 
 		PreparedStatement stmt = conn.prepareStatement(boardOneSql);
 		// 쿼리문을 stmt 변수에 저장 
-		stmt.setString(1, board.categoryName);
-		stmt.setString(2, board.boardTitle);
-		stmt.setString(3, board.boardContent);
-		stmt.setInt(4, board.boardNo);
-		stmt.setString(5, board.boardPw);
+		stmt.setString(1, board.getCategoryName());
+		stmt.setString(2, board.getBoardTitle());
+		stmt.setString(3, board.getBoardContent());
+		stmt.setInt(4, board.getBoardNo());
+		stmt.setString(5, board.getBoardPw());
 		// 수정할 학생 정보를 받아 쿼리 수정 
 		System.out.println("쿼리 수정 완료");
 		// 디버깅 코드 
@@ -209,12 +209,12 @@ public class BoardDao {
 		// true값일때만 커서 옮기면서
 			board = new Board();  // 생성자메서드
 			// board 객체 새롭게 생성 
-			board.boardNo = boardOneRs.getInt("boardNo");
-			board.categoryName = boardOneRs.getString("categoryName");
-			board.boardTitle =  boardOneRs.getString("boardTitle");
-			board.boardContent = boardOneRs.getString("boardContent");
-			board.createDate =  boardOneRs.getString("createDate");
-			board.updateDate =  boardOneRs.getString("updateDate");
+			board.setBoardNo(boardOneRs.getInt("boardNo"));
+			board.setCategoryName(boardOneRs.getString("categoryName"));
+			board.setBoardTitle(boardOneRs.getString("boardTitle"));
+			board.setBoardContent(boardOneRs.getString("boardContent"));
+			board.setCreateDate(boardOneRs.getString("createDate"));
+			board.setUpdateDate(boardOneRs.getString("updateDate"));
 			// 받아온 값들을 board 객체에 저장한다. 
 		}
 		// rs.close();
@@ -263,12 +263,12 @@ public class BoardDao {
 		// 쿼리 결과가 담긴 테이블 boardRs를 한줄씩 읽는다. 
 			board  = new Board();
 			// 새로운 board 객체 생성 
-			board.boardNo = boardOneRs.getInt("boardNo");
-			board.categoryName = boardOneRs.getString("categoryName");
-			board.boardTitle = boardOneRs.getString("boardTitle");
-			board.boardContent = boardOneRs.getString("boardContent");
-			board.createDate = boardOneRs.getString("createDate");
-			board.updateDate = boardOneRs.getString("updateDate");
+			board.setBoardNo(boardOneRs.getInt("boardNo"));
+			board.setCategoryName(boardOneRs.getString("categoryName"));
+			board.setBoardTitle(boardOneRs.getString("boardTitle"));
+			board.setBoardContent(boardOneRs.getString("boardContent"));
+			board.setCreateDate(boardOneRs.getString("createDate"));
+			board.setUpdateDate(boardOneRs.getString("updateDate"));
 			// 쿼리에서 받아온 값을  board에 담긴 변수들에 저장한다. 
 		}
 		

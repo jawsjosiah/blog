@@ -31,8 +31,8 @@ public class GuestbookDao {
 		rs = stmt.executeQuery();
 		if (rs.next()) {
 			guestbook = new Guestbook(); // 생성자메서드
-			guestbook.guestbookNo = rs.getInt("guestbookNo");
-			guestbook.guestbookContent = rs.getString("guestbookContent");
+			guestbook.setGuestbookNo(rs.getInt("guestbookNo"));
+			guestbook.setGuestbookContent(rs.getString("guestbookContent"));
 		}
 		// rs.close();
 		// stmt.close();
@@ -58,9 +58,9 @@ public class GuestbookDao {
 
 		String sql = "UPDATE guestbook SET guestbook_content=? WHERE guestbook_no=? AND guestbook_pw=?";
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, guestbook.guestbookContent);
-		stmt.setInt(2, guestbook.guestbookNo);
-		stmt.setString(3, guestbook.guestbookPw);
+		stmt.setString(1, guestbook.getGuestbookContent());
+		stmt.setInt(2, guestbook.getGuestbookNo());
+		stmt.setString(3, guestbook.getGuestbookPw());
 		System.out.println(stmt + " <-- sql updateGuestbook");
 		
 		row = stmt.executeUpdate();
@@ -117,9 +117,9 @@ public class GuestbookDao {
 		String sql = "INSERT INTO guestbook(guestbook_content, writer, guestbook_pw, create_date, update_date) VALUES(?,?,?,NOW(),NOW())";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, guestbook.guestbookContent);
-		stmt.setString(2, guestbook.writer);
-		stmt.setString(3, guestbook.guestbookPw);
+		stmt.setString(1, guestbook.getGuestbookContent());
+		stmt.setString(2, guestbook.getWriter());
+		stmt.setString(3, guestbook.getGuestbookPw());
 		int row = stmt.executeUpdate();
 		if (row == 1) {
 			System.out.println("입력성공");
@@ -182,10 +182,10 @@ public class GuestbookDao {
 		// 데이터 변환(가공)
 		while (rs.next()) {
 			Guestbook g = new Guestbook();
-			g.guestbookNo = rs.getInt("guestbookNo");
-			g.guestbookContent = rs.getString("guestbookContent");
-			g.writer = rs.getString("writer");
-			g.createDate = rs.getString("createDate");
+			g.setGuestbookNo(rs.getInt("guestbookNo"));
+			g.setGuestbookContent(rs.getString("guestbookContent"));
+			g.setWriter(rs.getString("writer"));
+			g.setCreateDate(rs.getString("createDate"));
 			list.add(g);
 		}
 
