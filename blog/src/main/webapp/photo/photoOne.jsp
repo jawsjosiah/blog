@@ -26,11 +26,11 @@
 	<table class="table table-borderless">
 		<tr>
 			<td>photoNo</td>
-			<td><%=photo.photoNo%></td>
+			<td><%=photo.getPhotoNo()%></td>
 		</tr>
 		<tr>
 			<td>photoName</td>
-			<td><%=photo.photoName%></td>
+			<td><%=photo.getPhotoName()%></td>
 		</tr>
 	</table>
 </body>

@@ -60,13 +60,13 @@
 					if(i<list.size()) {
 			%>
 						<td>
-							<a href="<%=request.getContextPath()%>/photo/photoOne.jsp?photoNo=<%=list.get(i).photoNo%>">
-								<img src="<%=request.getContextPath()%>/upload/<%=list.get(i).photoName%>" width="100" height="100">
+							<a href="<%=request.getContextPath()%>/photo/photoOne.jsp?photoNo=<%=list.get(i).getPhotoNo()%>">
+								<img src="<%=request.getContextPath()%>/upload/<%=list.get(i).getPhotoName()%>" width="100" height="100">
 								<!--  상세보기에서는 원본이미지 크기로 -->
 							</a>
 							
 							<button type="button" class="btn btn-outline-primary">
-								<a href="<%=request.getContextPath()%>/photo/deletePhotoForm.jsp?photoNo=<%=list.get(i).photoNo%>">삭제</a>
+								<a href="<%=request.getContextPath()%>/photo/deletePhotoForm.jsp?photoNo=<%=list.get(i).getPhotoNo()%>">삭제</a>
 							</button>
 						</td>
 						

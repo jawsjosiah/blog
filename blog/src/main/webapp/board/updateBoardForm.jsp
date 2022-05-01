@@ -43,7 +43,7 @@
 		<table class="table table-bordered">
 			<tr>
 				<td>boardNo</td>
-				<td><input type="text" name="boardNo" value="<%=board.boardNo%>" readonly="readonly">
+				<td><input type="text" name="boardNo" value="<%=board.setBoardNo(boardNo)%>" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
@@ -53,7 +53,7 @@
 						<%
 							for(String s : categoryList) { 
 							// foreach문을 사용하는데 
-								if(s.equals(board.categoryName)) {
+								if(s.equals(board.getCategoryName())) {
 								// 문자열 s가 board.categoryName과 같다면 
 						%>
 									<option selected="selected" value="<%=s%>"><%=s%></option>
@@ -71,12 +71,12 @@
 			</tr>
 			<tr>
 				<td>boardTitle</td>
-				<td><input type="text" name="boardTitle" value="<%=board.boardTitle%>"></td>
+				<td><input type="text" name="boardTitle" value="<%=board.getBoardTitle()%>"></td>
 			</tr>
 			<tr>
 				<td>boardContent</td>
 				<td>
-					<textarea rows="5" cols="50" name="boardContent"><%=board.boardContent%></textarea>
+					<textarea rows="5" cols="50" name="boardContent"><%=board.getBoardContent()%></textarea>
 				</td>
 			<tr>	
 				<td>boardPw</td>

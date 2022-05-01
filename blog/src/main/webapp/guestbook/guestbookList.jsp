@@ -54,20 +54,20 @@
 %>
 		<table class = "table table-striped table-hover">
 			<tr>
-				<td><%=g.writer%></td>
-				<td><%=g.createDate%></td>
+				<td><%=g.getWriter()%></td>
+				<td><%=g.getCreateDate()%></td>
 			</tr>
 			<tr>
-				<td colspan="2"><%=g.guestbookContent%></td>
+				<td colspan="2"><%=g.getGuestbookContent()%></td>
 			</tr>
 		</table>
 		
 		<div>
 			<button type="button" class="btn btn btn-outline-primary">
-				<a href="<%=request.getContextPath()%>/guestbook/updateGuestbookForm.jsp?guestbookNo=<%=g.guestbookNo%>">수정</a>
+				<a href="<%=request.getContextPath()%>/guestbook/updateGuestbookForm.jsp?guestbookNo=<%=g.getGuestbookNo()%>">수정</a>
 			</button>
 			<button type="button" class="btn btn btn-outline-primary">
-				<a href="<%=request.getContextPath()%>/guestbook/deleteGuestbookForm.jsp?guestbookNo=<%=g.guestbookNo%>">삭제</a>
+				<a href="<%=request.getContextPath()%>/guestbook/deleteGuestbookForm.jsp?guestbookNo=<%=g.getGuestbookNo()%>">삭제</a>
 			</button>
 		</div>
 		<ul></ul>

@@ -47,11 +47,11 @@
 		System.out.println("db 고고!");
 		PdfDao pdfDao = new PdfDao();
 		Pdf pdf = new Pdf();
-		pdf.pdfName = pdfName;
-		pdf.pdfOriginalName = pdfOriginalName;
-		pdf.pdfType = pdfType;
-		pdf.pdfPw = pdfPw;
-		pdf.writer = writer;
+		pdf.setPdfName(pdfName);
+		pdf.setPdfOriginalName(pdfOriginalName);
+		pdf.setPdfType(pdfType);
+		pdf.setPdfPw(pdfPw);
+		pdf.setWriter(writer);
 		
 		pdfDao.insertPdf(pdf); // 메서드 구현
 		

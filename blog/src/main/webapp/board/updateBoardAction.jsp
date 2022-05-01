@@ -21,11 +21,11 @@
 	// 디버깅 코드 
 	
 	Board board = new Board();
-	board.boardNo = boardNo;
-	board.categoryName = categoryName;
-	board.boardTitle = boardTitle;
-	board.boardContent = boardContent;
-	board.boardPw = boardPw;
+	board.setBoardNo(boardNo);
+	board.setCategoryName(categoryName);
+	board.setBoardTitle(boardTitle);
+	board.setBoardContent(boardContent);
+	board.setBoardPw(boardPw);
 	// board 객체를 새로 생성하고 받아온 값을 저장한다  
 	
 	
@@ -35,12 +35,12 @@
 	if(row==0) {
 		System.out.println("수정 실패"); 
 		// 디버깅 코드 
-		response.sendRedirect(request.getContextPath()+"/board/updateBoardForm.jsp?boardNo=" + board.boardNo);
+		response.sendRedirect(request.getContextPath()+"/board/updateBoardForm.jsp?boardNo=" + board.getBoardNo());
 		// 수정 실패시 updateBoardForm.jsp 페이지를 벗어나지 않는다. 
 	} else if(row==1) {
 		System.out.println("수정 성공");
 		// 디버깅 코드 
-		response.sendRedirect(request.getContextPath()+"/board/boardOne.jsp?boardNo=" + board.boardNo);
+		response.sendRedirect(request.getContextPath()+"/board/boardOne.jsp?boardNo=" + board.getBoardNo());
 		// 수정 성공시 boardOne.jsp 페이지로 이동한다 
 	} else {
 		System.out.println("에러");

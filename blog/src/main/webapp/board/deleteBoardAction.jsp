@@ -13,19 +13,19 @@
 	// 디버깅 코드 
 	
 	Board board = new Board();
-	board.boardNo = boardNo;
-	board.boardPw = boardPw;
+	board.setBoardNo(boardNo);
+	board.setBoardPw(boardPw);
 	// Board 객체 생성 
 	
 	BoardDao boardDao = new BoardDao();
 	// BoardDao 겍체 생성 
-	int row = boardDao.deleteBoard(board.boardNo, board.boardPw);
+	int row = boardDao.deleteBoard(board.getBoardNo(), board.getBoardPw());
 	// 게시판 삭제하는 메서드 호출 
 	
 	if(row==0) { // 삭제 실패 
 		System.out.println("삭제 실패");
 		// 디버깅 코드
-		response.sendRedirect("./deleteBoardForm.jsp?boardNo="+board.boardNo);
+		response.sendRedirect("./deleteBoardForm.jsp?boardNo="+board.getBoardNo());
 	} else if(row ==1 ) { // 삭제 성공 
 		System.out.println("삭제 성공");
 		// 디버깅 코드 

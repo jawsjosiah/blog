@@ -32,11 +32,11 @@
 	<table>
 		<tr>
 			<td>guestbookNo</td>
-			<td><%=guestbook.guestbookNo%></td>
+			<td><%=guestbook.getGuestbookNo()%></td>
 		</tr>
 		<tr>
 			<td>guestbookContent</td>
-			<td><%=guestbook.guestbookContent%></td>
+			<td><%=guestbook.getGuestbookContent()%></td>
 		</tr>
 	</table>
 </body>

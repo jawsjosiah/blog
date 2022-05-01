@@ -53,35 +53,35 @@
 	<table class="table table-striped">
 		<tr>
 			<td>boardNo</td>
-			<td><%= board.boardNo%></td>
+			<td><%= board.getBoardNo()%></td>
 		</tr>
 		<tr>
 			<td>categoryName</td>
-			<td><%= board.categoryName%></td>
+			<td><%= board.getCategoryName()%></td>
 		</tr>
 		<tr>
 			<td>boardTitle</td>
-			<td><%= board.boardTitle%></td>
+			<td><%= board.getBoardTitle()%></td>
 		</tr>
 		<tr>
 			<td>boardContent</td>
-			<td><%= board.boardContent%></td>
+			<td><%= board.getBoardContent()%></td>
 		</tr>
 		<tr>
 			<td>createDate</td>
-			<td><%= board.createDate%></td>
+			<td><%= board.getCreateDate()%></td>
 		</tr>
 		<tr>
 			<td>updateDate</td>
-			<td><%= board.updateDate%></td>
+			<td><%= board.getUpdateDate()%></td>
 		</tr>
 	</table>
 	 <div>
 	 	<button type="button" class="btn btn btn-outline-primary">
-			<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%= board.boardNo %>">수정</a>
+			<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%= board.getBoardNo() %>">수정</a>
 		</button>
 		<button type="button" class="btn btn btn-outline-primary">
-			<a href="<%=request.getContextPath()%>/board/deleteBoardForm.jsp?boardNo=<%= board.boardNo %>">삭제</a>
+			<a href="<%=request.getContextPath()%>/board/deleteBoardForm.jsp?boardNo=<%= board.getBoardNo() %>">삭제</a>
 		</button>
     </div>
 </body>

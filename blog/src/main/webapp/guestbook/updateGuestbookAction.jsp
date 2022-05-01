@@ -17,9 +17,9 @@
 	
 	Guestbook guestbook = new Guestbook();
 	// 위에서 받아온 값들(No,Content,Pw)을 담기위해 Guestbook 객체 하나 생성 
-	guestbook.guestbookNo = guestbookNo;
-	guestbook.guestbookContent = guestbookContent;
-	guestbook.guestbookPw = guestbookPw;
+	guestbook.setGuestbookNo(guestbookNo);
+	guestbook.setGuestbookContent(guestbookContent);
+	guestbook.setGuestbookPw(guestbookPw);
 	// 객체에 담는다. 
 		
 	GuestbookDao guestbookDao = new GuestbookDao();

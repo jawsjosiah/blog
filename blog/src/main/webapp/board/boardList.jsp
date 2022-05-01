@@ -124,10 +124,10 @@
 	while(boardRs.next()) {
 	// 한줄씩 읽는다 
 		Board b = new Board();
-		b.boardNo = boardRs.getInt("boardNo");
-		b.categoryName = boardRs.getString("categoryName");
-		b.boardTitle = boardRs.getString("boardTitle");
-		b.createDate = boardRs.getString("createDate");
+		b.setBoardNo(boardRs.getInt("boardNo"));
+		b.setCategoryName(boardRs.getString("categoryName"));
+		b.setBoardTitle(boardRs.getString("boardTitle"));
+		b.setCreateDate(boardRs.getString("createDate"));
 		// 쿼리에서 읽어온 값을 vo 객체가 가진 변수에 저장 
 		boardList.add(b);
 	}
@@ -216,9 +216,9 @@
 				for(Board b : boardList) {
 			%>
 					<tr>
-						<td><%=b.categoryName%></td>
-						<td><a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.boardNo%>"><%=b.boardTitle%></a></td>
-						<td><%=b.createDate%></td>
+						<td><%=b.getCategoryName()%></td>
+						<td><a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>"><%=b.getBoardTitle()%></a></td>
+						<td><%=b.getCreateDate()%></td>
 					</tr>
 			<%		
 				}

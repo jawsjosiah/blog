@@ -49,7 +49,7 @@
 		%>
 				<tr>
 					<td>
-						<a href="<%=request.getContextPath()%>/pdf/pdfOne.jsp?pdfNo=<%=p.pdfNo%>"><%=p.pdfName%>
+						<a href="<%=request.getContextPath()%>/pdf/pdfOne.jsp?pdfNo=<%=p.getPdfNo()%>"><%=p.getPdfName()%>
 							
 						</a>
 					</td>
@@ -60,7 +60,7 @@
 			
 			<button class="btn btn btn-outline-primary">
 				<div>
-					<a href="<%=request.getContextPath()%>/pdf/deletePdfForm.jsp?pdfNo=<%=p.pdfNo%>">삭제</a>
+					<a href="<%=request.getContextPath()%>/pdf/deletePdfForm.jsp?pdfNo=<%=p.getPdfNo()%>">삭제</a>
 				</div>
 			</button>
 		<%

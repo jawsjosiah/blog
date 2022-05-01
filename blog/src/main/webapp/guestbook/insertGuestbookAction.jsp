@@ -22,9 +22,9 @@
 	
 	// 요청에서 넘겨진 값들을 가공해서 하나의 변수로 만든다. 
 	Guestbook guestbook = new Guestbook();
-	guestbook.guestbookContent = guestbookContent;
-	guestbook.writer = writer;
-	guestbook.guestbookPw = guestbookPw;
+	guestbook.setGuestbookContent(guestbookContent);
+	guestbook.setWriter(writer);
+	guestbook.setGuestbookPw(guestbookPw);
 	
 	
 	GuestbookDao guestbookDao = new GuestbookDao();

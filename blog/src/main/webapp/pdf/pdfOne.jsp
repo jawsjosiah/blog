@@ -27,11 +27,11 @@
 	<table class="table table-hover">
 		<tr>
 			<td>pdfNo</td>
-			<td><%=pdf.pdfNo%></td>
+			<td><%=pdf.getPdfNo()%></td>
 		</tr>
 		<tr>
 			<td>pdfName</td>
-			<td><%=pdf.pdfName%></td>
+			<td><%=pdf.getPdfName()%></td>
 		</tr>
 	</table>
 </body>

@@ -25,10 +25,10 @@
 	
 	// 요청에서 넘겨진 값들을 가공해서 하나의 변수로 만든다. 
 	Board board = new Board();
-	board.categoryName = categoryName;
-	board.boardTitle = boardTitle;
-	board.boardContent = boardContent;
-	board.boardPw = boardPw;
+	board.setCategoryName(categoryName);
+	board.setBoardTitle(boardTitle);
+	board.setBoardContent(boardContent);
+	board.setBoardPw(boardPw);
 	
 	BoardDao boardDao = new BoardDao();
 	boardDao.insertBoard(board);
