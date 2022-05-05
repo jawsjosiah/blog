@@ -280,7 +280,7 @@ public class BoardDao {
 	public ArrayList<HashMap<String, Object>> selectCategoryCount() throws Exception {
 		Class.forName("org.mariadb.jdbc.Driver");
 		// 마리아 DB 드라이버 로딩 
-		System.out.println("드라이버 로딩 성공(boardList.jsp)");
+		System.out.println("드라이버 로딩 성공 <-- BoardDao.selectCategoryCount() ");
 		// 디버깅 코드 
 		
 		Connection conn = null;
@@ -320,6 +320,106 @@ public class BoardDao {
 			map.put("cnt", categoryRs.getInt("cnt"));
 			categoryList.add(map);
 		}
+		
+		conn.close();
+		
 		return categoryList;
+	}
+	
+	public ArrayList<Board> selectBoardList(int rowPerPage, int beginRow, String categoryName) throws Exception {
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		System.out.println("드라이버 로딩 성공 <-- BoardDao.selectBoardList() ");
+		
+		Connection conn = null;
+		// DB와 연결하는 인스턴스 선언 
+		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		// 연결하려는 DB의 IP 주소를 문자열 변수에 저장 
+		String dbuser = "root";
+		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
+		String dbpw = "java1234";
+		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
+		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		// DB에 연결
+		System.out.println(conn + " <-- conn // BoardDao.selectBoardList() ");
+		// 디버깅 코드
+		
+		// boardList
+		String boardSql = null;
+		// 쿼리를 저장할 문자열 변수 선언 후 null로 초기화 
+		PreparedStatement boardStmt = null;
+		// 쿼리를 저장할 문자열 변수 선언 후 null로 초기화 
+		if(categoryName.equals("")) { 
+		// categoryName이 null값인 경우 
+			boardSql = "SELECT board_no boardNo, category_name categoryName, board_title boardTitle, create_date createDate FROM board ORDER BY create_date DESC LIMIT ?, ?";
+			// 생성일 컬럼을 기준으로 오름차순 정렬 
+			boardStmt = conn.prepareStatement(boardSql);
+			// 불러온 쿼리문 저장 
+			boardStmt.setInt(1, beginRow);
+			boardStmt.setInt(2, rowPerPage);
+		} else {
+		// categoryName이 null 아닌 경우 
+			boardSql = "SELECT board_no boardNo, category_name categoryName, board_title boardTitle, create_date createDate FROM board WHERE category_name =? ORDER BY create_date DESC LIMIT ?, ?";
+			// categoryName의 값에 해당하는 쿼리문 불러오기 
+			boardStmt = conn.prepareStatement(boardSql);
+			// 불러온 쿼리문 저장 
+			boardStmt.setString(1, categoryName);
+			// ?에 들어가는 값 대입 
+			boardStmt.setInt(2, beginRow);
+			boardStmt.setInt(3, rowPerPage);
+		}
+		ResultSet boardRs = boardStmt.executeQuery();
+		// 실행한 쿼리를 테이블 형태 변수에 저장 
+		ArrayList<Board> boardList = new ArrayList<Board>();
+		// vo 동적 배열 생성 
+		while(boardRs.next()) {
+		// 한줄씩 읽는다 
+			Board b = new Board();
+			b.setBoardNo(boardRs.getInt("boardNo"));
+			b.setCategoryName(boardRs.getString("categoryName"));
+			b.setBoardTitle(boardRs.getString("boardTitle"));
+			b.setCreateDate(boardRs.getString("createDate"));
+			// 쿼리에서 읽어온 값을 vo 객체가 가진 변수에 저장 
+			boardList.add(b);
+		}
+		conn.close();
+		
+		return boardList;
+		
+	}
+	
+	public int selectTotalRow() throws Exception {
+		int totalRow = 0; 
+		
+		Class.forName("org.mariadb.jdbc.Driver");
+		// 마리아 DB 드라이버 로딩 
+		System.out.println("드라이버 로딩 성공 <-- BoardDao.selectTotalRow() ");
+		// 디버깅 코드 
+		
+		Connection conn = null;
+		// DB와 연결하는 객체 선언 
+		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		// 연결하려는 DB의 IP 주소를 문자열 변수에 저장 
+		String dbuser = "root";
+		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
+		String dbpw = "java1234";
+		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
+		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		// DB에 연결
+		System.out.println(conn + " <-- conn // BoardDao.selectTotalRow() ");
+		// 디버깅 코드
+		
+		String totalRowSql = "select count(*) cnt from board";
+		PreparedStatement totalRowStmt = conn.prepareStatement(totalRowSql); 
+		ResultSet totalRowRs = totalRowStmt.executeQuery();
+		if(totalRowRs.next()) {
+			totalRow = totalRowRs.getInt("cnt");
+			System.out.println(totalRow+" <-- totalRow(1000)");
+		}
+		
+		conn.close(); 
+		
+		return totalRow;
+		
 	}
 }
