@@ -36,6 +36,9 @@
 		
 		<div>
 			<button type="submit" class="btn btn-info">삭제</button>
+			<button type="button" class="btn btn-outline-primary">
+				<a href="<%=request.getContextPath()%>/photo/photoList.jsp">목록</a>
+			</button>
 		</div>
 		
 		<!-- name="*"에서 *의 값을 넘긴다. -->

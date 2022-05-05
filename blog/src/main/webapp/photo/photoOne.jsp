@@ -23,7 +23,7 @@
 </head>
 <body>
 	<h1>photo 상세보기</h1>
-	<table class="table table-borderless">
+	<table class="table table-bordered">
 		<tr>
 			<td>photoNo</td>
 			<td><%=photo.getPhotoNo()%></td>
@@ -33,5 +33,8 @@
 			<td><%=photo.getPhotoName()%></td>
 		</tr>
 	</table>
+	<button type="button" class="btn btn-outline-primary">
+		<a href="<%=request.getContextPath()%>/photo/photoList.jsp">목록</a>
+	</button>
 </body>
 </html>

@@ -71,6 +71,8 @@
 			</button>
 		</div>
 		<ul></ul>
+		
+		<hr color="black" width="1px" size="100px">
 <%	
 	}
 	
@@ -106,6 +108,7 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-outline-info">입력</button>
+		
 	</form>
 	
 </body>

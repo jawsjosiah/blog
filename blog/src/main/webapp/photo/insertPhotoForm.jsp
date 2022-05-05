@@ -32,6 +32,9 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-info">이미지 등록</button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<%=request.getContextPath()%>/photo/photoList.jsp">목록</a>
+		</button>
 	</form>
 </body>
 </html>

@@ -34,6 +34,9 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-info">수정</button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<%=request.getContextPath()%>/guestbook/guestbookList.jsp">목록</a>
+		</button>
 	</form>
 </body>
 </html>

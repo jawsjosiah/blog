@@ -33,6 +33,11 @@
 			<td>pdfName</td>
 			<td><%=pdf.getPdfName()%></td>
 		</tr>
+		
 	</table>
+	
+	<button type="button" class="btn btn-outline-primary">
+		<a href="<%=request.getContextPath()%>/pdf/pdfList.jsp">목록</a>
+	</button>
 </body>
 </html>

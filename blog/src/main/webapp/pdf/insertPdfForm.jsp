@@ -32,6 +32,9 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-info">자료 등록</button>
+		<button type="button" class="btn btn-outline-primary">
+			<a href="<%=request.getContextPath()%>/pdf/pdfList.jsp">목록</a>
+		</button>
 	</form>
 </body>
 </html>
