@@ -54,8 +54,10 @@
 			<tr>
 				<td colspan="2">
 					<button type = "submit" class="btn btn-info">board 입력</button>
+					<button type="button" class="btn btn btn-outline-primary">
+						<a href="<%=request.getContextPath()%>/board/boardList.jsp">목록</a>
+					</button>
 				</td>
-				
 			</tr>
 		</table>
 	</form>

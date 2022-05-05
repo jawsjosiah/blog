@@ -90,58 +90,63 @@
 	  <p>목록</p>
 	</div>
 	
-	<!-- category별 게시글 링크 메뉴 -->
-	<div class="col-sm-2">
-		<ul class="list-group">
-			<%
-				for(HashMap<String, Object> m : categoryList) {
-			%>
-					<li class="list-group-item list-group-item-action">
-						<button type="button" class="btn btn-light ">
-							<a href="<%=request.getContextPath()%>/board/boardList.jsp?categoryName=<%=m.get("categoryName")%>"><%=m.get("categoryName")%>
-								<button type="button" class="btn btn-primary">
-									(<%=m.get("cnt")%>)
-								</button>
-							</a>
-						</button>
-					</li>
-			<%		
-				}
-			%>
-		</ul>
-	</div>
-	
-	<!-- 게시글 리스트 -->
-	<h1>게시글 목록(total : <%=totalRow%>)</h1>
-	
-	<div class="col-sm-2">
-		<button type="button" class="btn btn btn-outline-primary">
-			<a href="<%=request.getContextPath() %>/board/insertBoardForm.jsp">게시글 입력</a>
-		</button>
-	</div>
-	
-	<table class="table table-striped table-hover">
-		<thead>
-			<tr>
-				<th>categoryName</th>
-				<th>boardTitle</th>
-				<th>createDate</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-				for(Board b : boardList) {
-			%>
+	<div class="row">
+		<!-- category별 게시글 링크 메뉴 -->
+		<div class="col-sm-2">
+			<ul class="list-group">
+				<%
+					for(HashMap<String, Object> m : categoryList) {
+				%>
+						<li class="list-group-item list-group-item-action">
+							<button type="button" class="btn btn-light ">
+								<a href="<%=request.getContextPath()%>/board/boardList.jsp?categoryName=<%=m.get("categoryName")%>"><%=m.get("categoryName")%>
+									<button type="button" class="btn btn-primary">
+										(<%=m.get("cnt")%>)
+									</button>
+								</a>
+							</button>
+						</li>
+				<%		
+					}
+				%>
+			</ul>
+		</div>
+		
+		<!-- 게시글 리스트 -->
+		<div class="col-sm-10">
+			<h1>게시글 목록(total : <%=totalRow%>)</h1>
+			
+			<div >
+				<button type="button" class="btn btn btn-outline-primary">
+					<a href="<%=request.getContextPath() %>/board/insertBoardForm.jsp">게시글 입력</a>
+				</button>
+			</div>
+		
+		
+			<table class="table table-striped table-hover">
+				<thead>
 					<tr>
-						<td><%=b.getCategoryName()%></td>
-						<td><a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>"><%=b.getBoardTitle()%></a></td>
-						<td><%=b.getCreateDate()%></td>
+						<th>categoryName</th>
+						<th>boardTitle</th>
+						<th>createDate</th>
 					</tr>
-			<%		
-				}
-			%>
-		</tbody>
-	</table>
+				</thead>
+				<tbody>
+					<%
+						for(Board b : boardList) {
+					%>
+							<tr>
+								<td><%=b.getCategoryName()%></td>
+								<td><a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>"><%=b.getBoardTitle()%></a></td>
+								<td><%=b.getCreateDate()%></td>
+							</tr>
+					<%		
+						}
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
 	
 	<div>
 		<!-- 페이지가 만약 10페이지였다면 이전을 누르면 9페이지, 다음을 누르면 11페이지 -->

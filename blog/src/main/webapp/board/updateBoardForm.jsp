@@ -43,8 +43,9 @@
 		<table class="table table-bordered">
 			<tr>
 				<td>boardNo</td>
-				<td><input type="text" name="boardNo" value="<%=board.setBoardNo(boardNo)%>" readonly="readonly">
-				</td>
+					<td>
+						<input type="text" name="boardNo" value="<%=board.getBoardNo()%>" readonly="readonly">
+					</td>
 			</tr>
 			<tr>
 				<td>categoryName</td>
@@ -84,6 +85,9 @@
 			</tr>
 		</table>
 		<button type="submit" class="btn btn-info">수정</button>
+		<button type="button" class="btn btn btn-outline-primary">
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp">목록</a>
+		</button>
 	</form>
 </body>
 </html>

@@ -29,59 +29,69 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<div class="col-sm-2">
-		<ul class="list-group">
-			<%
-				for(HashMap<String, Object> m : categoryList) {
-			%>
-					<li class="list-group-item list-group-item-action">
-						<button type="button" class="btn btn-light ">
-							<a href="<%=request.getContextPath()%>/board/boardList.jsp?categoryName=<%=m.get("categoryName")%>"><%=m.get("categoryName")%>
-								<button type="button" class="btn btn-primary">
-									(<%=m.get("cnt")%>)
-								</button>
-							</a>
-						</button>
-					</li>
-			<%		
-				}
-			%>
-		</ul>
+	<div class="row">
+		<div class="col-sm-2">
+			<ul class="list-group">
+				<%
+					for(HashMap<String, Object> m : categoryList) {
+				%>
+						<li class="list-group-item list-group-item-action">
+							<button type="button" class="btn btn-light ">
+								<a href="<%=request.getContextPath()%>/board/boardList.jsp?categoryName=<%=m.get("categoryName")%>"><%=m.get("categoryName")%>
+									<button type="button" class="btn btn-primary">
+										(<%=m.get("cnt")%>)
+									</button>
+								</a>
+							</button>
+						</li>
+				<%		
+					}
+				%>
+			</ul>
+		</div>
+		
+		<div class="col-sm-10">
+		
+			<h1>board 상세보기</h1>
+			<table class="table table-striped">
+				<tr>
+					<td>boardNo</td>
+					<td><%= board.getBoardNo()%></td>
+				</tr>
+				<tr>
+					<td>categoryName</td>
+					<td><%= board.getCategoryName()%></td>
+				</tr>
+				<tr>
+					<td>boardTitle</td>
+					<td><%= board.getBoardTitle()%></td>
+				</tr>
+				<tr>
+					<td>boardContent</td>
+					<td><%= board.getBoardContent()%></td>
+				</tr>
+				<tr>
+					<td>createDate</td>
+					<td><%= board.getCreateDate()%></td>
+				</tr>
+				<tr>
+					<td>updateDate</td>
+					<td><%= board.getUpdateDate()%></td>
+				</tr>
+			</table>
+		
+		</div>
 	</div>
 	
-	<h1>board 상세보기</h1>
-	<table class="table table-striped">
-		<tr>
-			<td>boardNo</td>
-			<td><%= board.getBoardNo()%></td>
-		</tr>
-		<tr>
-			<td>categoryName</td>
-			<td><%= board.getCategoryName()%></td>
-		</tr>
-		<tr>
-			<td>boardTitle</td>
-			<td><%= board.getBoardTitle()%></td>
-		</tr>
-		<tr>
-			<td>boardContent</td>
-			<td><%= board.getBoardContent()%></td>
-		</tr>
-		<tr>
-			<td>createDate</td>
-			<td><%= board.getCreateDate()%></td>
-		</tr>
-		<tr>
-			<td>updateDate</td>
-			<td><%= board.getUpdateDate()%></td>
-		</tr>
-	</table>
 	 <div>
 	 	<button type="button" class="btn btn btn-outline-primary">
 			<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%= board.getBoardNo() %>">수정</a>
 		</button>
 		<button type="button" class="btn btn btn-outline-primary">
 			<a href="<%=request.getContextPath()%>/board/deleteBoardForm.jsp?boardNo=<%= board.getBoardNo() %>">삭제</a>
+		</button>
+		<button type="button" class="btn btn btn-outline-primary">
+			<a href="<%=request.getContextPath()%>/board/boardList.jsp">목록</a>
 		</button>
     </div>
 </body>

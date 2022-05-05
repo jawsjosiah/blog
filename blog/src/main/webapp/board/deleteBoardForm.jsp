@@ -32,6 +32,9 @@
 			
 			<div>
 				<button type="submit" class="btn btn-info">삭제</button>
+				<button type="button" class="btn btn btn-outline-primary">
+					<a href="<%=request.getContextPath()%>/board/boardList.jsp">목록</a>
+				</button>
 			</div>
 		</div>
 		
