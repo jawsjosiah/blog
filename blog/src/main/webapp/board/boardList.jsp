@@ -67,7 +67,7 @@
 		lastPage = (totalRow / rowPerPage) + 1;
 	}
 	
-	// 행의 총 갯수는 나눌만 할 것 같기는 한데 
+	
 	
 %>
 <!DOCTYPE html>

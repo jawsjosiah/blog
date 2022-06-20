@@ -20,9 +20,9 @@ public class BoardDao {
 		Connection conn = null;
 		// 데이터베이스와 연결할 객체를 선언한다. 
 		
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		// 데이터베이스 정보를 저장한다. 
 		
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
@@ -73,11 +73,11 @@ public class BoardDao {
 		Connection conn = null;
 		// DB와 연결할 객체 선언 
 		
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		// 연결할 데이버베이스의 IP주소를 문자열 변수에 저장
 		String dbuser = "root";
 		// 연결할 데이버베이스의 아이디를 문자열 변수에 저장
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		// 연결할 데이버베이스의 패스워드를 문자열 변수에 저장 
 		
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
@@ -114,9 +114,9 @@ public class BoardDao {
 		
 		Class.forName("org.mariadb.jdbc.Driver");
 		Connection conn = null;
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		
 		PreparedStatement stmt = conn.prepareStatement("delete from board where board_no=? and board_pw=?");
@@ -143,11 +143,11 @@ public class BoardDao {
 		
 		Connection conn = null;
 		// DB와 연결할 객체 선언 
-		String dburl = "jdbc:mariadb://localhost:3307/blog"; 
+		String dburl = "jdbc:mariadb://localhost:3306/blog"; 
 		// 주소 저장
 		String dbuser = "root"; 
 		// 아이디 저장
-		String dbpw = "java1234"; 
+		String dbpw = "mariadb1234"; 
 		// 비번 저장
 		conn = DriverManager.getConnection(dburl,dbuser,dbpw);
 		// 마리아 DB와 연결 
@@ -187,9 +187,9 @@ public class BoardDao {
 		
 		// ResultSet rs = null;
 
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 
 		String boardOneSql = "select board_no boardNo, category_name categoryName, board_title boardTitle, board_content boardContent, board_pw boardPw, create_date createDate, update_date updateDate from board WHERE board_no = ?";
@@ -233,11 +233,11 @@ public class BoardDao {
 		
 		Connection conn = null;
 		// DB와 연결하는 객체 선언 
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		// 연결하려는 DB의 IP 주소를 문자열 변수에 저장 
 		String dbuser = "root";
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		// DB에 연결
@@ -285,11 +285,11 @@ public class BoardDao {
 		
 		Connection conn = null;
 		// DB와 연결하는 객체 선언 
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		// 연결하려는 DB의 IP 주소를 문자열 변수에 저장 
 		String dbuser = "root";
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		// DB에 연결
@@ -333,11 +333,11 @@ public class BoardDao {
 		
 		Connection conn = null;
 		// DB와 연결하는 인스턴스 선언 
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		// 연결하려는 DB의 IP 주소를 문자열 변수에 저장 
 		String dbuser = "root";
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		// DB에 연결
@@ -398,11 +398,11 @@ public class BoardDao {
 		
 		Connection conn = null;
 		// DB와 연결하는 객체 선언 
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		// 연결하려는 DB의 IP 주소를 문자열 변수에 저장 
 		String dbuser = "root";
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 		// DB에 연결

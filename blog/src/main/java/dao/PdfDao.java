@@ -22,9 +22,9 @@ public class PdfDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		
 		String sql ="select pdf_name pdfName from pdf where pdf_no = ? ";
 				
@@ -48,9 +48,9 @@ public class PdfDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		
 		String sql = "insert into pdf(pdf_name, pdf_original_name, pdf_type, pdf_pw, writer, create_date, update_date) values (?,?,?,?,?,now(),now())";
 	
@@ -80,9 +80,9 @@ public class PdfDao {
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
-		String dburl = "jdbc:mariadb://localhost:3307/blog";
+		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
-		String dbpw = "java1234";
+		String dbpw = "mariadb1234";
 		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 
 		String sql = "DELETE FROM pdf WHERE pdf_no=? AND pdf_pw=?";
@@ -111,9 +111,9 @@ public class PdfDao {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			
-			String dburl = "jdbc:mariadb://localhost:3307/blog";
+			String dburl = "jdbc:mariadb://localhost:3306/blog";
 			String dbuser = "root";
-			String dbpw = "java1234";
+			String dbpw = "mariadb1234";
 			
 			String sql = "select pdf_no pdfNo, pdf_name pdfName, writer, create_date createDate FROM pdf ORDER BY create_date DESC LIMIT ?, ?";
 			conn = DriverManager.getConnection(dburl, dbuser, dbpw);
@@ -151,9 +151,9 @@ public class PdfDao {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 
-			String dburl = "jdbc:mariadb://localhost:3307/blog";
+			String dburl = "jdbc:mariadb://localhost:3306/blog";
 			String dbuser = "root";
-			String dbpw = "java1234";
+			String dbpw = "mariadb1234";
 			conn = DriverManager.getConnection(dburl, dbuser, dbpw);
 			
 			String sql = "select pdf_no pdfNo, pdf_name pdfName FROM pdf WHERE pdf_no = ?";
@@ -184,9 +184,9 @@ public class PdfDao {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 
-			String dburl = "jdbc:mariadb://localhost:3307/blog";
+			String dburl = "jdbc:mariadb://localhost:3306/blog";
 			String dbuser = "root";
-			String dbpw = "java1234";
+			String dbpw = "mariadb1234";
 			
 			String sql = "SELECT COUNT(*) cnt FROM pdf";
 			conn = DriverManager.getConnection(dburl, dbuser, dbpw);
