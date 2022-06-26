@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import util.DBUtil;
 import vo.Board;
 import vo.Guestbook;
 
@@ -13,9 +14,11 @@ public class BoardDao {
 	}
 	
 	public void insertBoard(Board board) throws Exception {
+		/*
 		Class.forName("org.mariadb.jdbc.Driver");
 		// 마리아 드라이버를 로딩한다. 
 		System.out.println("드라이버 로딩 성공");
+		*/
 		
 		Connection conn = null;
 		// 데이터베이스와 연결할 객체를 선언한다. 
@@ -25,9 +28,11 @@ public class BoardDao {
 		String dbpw = "mariadb1234";
 		// 데이터베이스 정보를 저장한다. 
 		
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
-		// 데이터베이스와 연결한다. 
-		System.out.println(conn+" <-- conn");
+		/*
+		 * conn = DriverManager.getConnection(dburl, dbuser, dbpw); // 데이터베이스와 연결한다.
+		 * System.out.println(conn+" <-- conn");
+		 */
+		
 		/*
 			INSERT INTO board(
 					category_name,
@@ -40,6 +45,7 @@ public class BoardDao {
 				?, ?, ?, ?, NOW(), NOW()		
 			)
 		*/
+		conn = DBUtil.getConnection();
 		String sql = "INSERT INTO board(category_name, board_title, board_content, board_pw, create_date, update_date) VALUES (?, ?, ?, ?, NOW(), NOW())";
 		// 문자열 변수 sql에 board테이블에 값을 삽입하는 쿼리를 저장한다. 
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -65,11 +71,10 @@ public class BoardDao {
 	}
 	
 	public ArrayList<String> selectCategoryName() throws Exception {
-		Class.forName("org.mariadb.jdbc.Driver");
-		// (0) 마리아 드라이버 로딩 과정이다.
-		System.out.println("드라이버 로딩 성공");
-		// 디버깅 코드
-		
+		/*
+		 * Class.forName("org.mariadb.jdbc.Driver"); // (0) 마리아 드라이버 로딩 과정이다.
+		 * System.out.println("드라이버 로딩 성공"); // 디버깅 코드
+		 */		
 		Connection conn = null;
 		// DB와 연결할 객체 선언 
 		
@@ -80,11 +85,11 @@ public class BoardDao {
 		String dbpw = "mariadb1234";
 		// 연결할 데이버베이스의 패스워드를 문자열 변수에 저장 
 		
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
-		// (1) 접속 정보를 가지고서 DB에 연결한다. 
-		System.out.println(conn + "<-- conn");
-		// 디버깅 코드 
-		
+		/*
+		 * conn = DriverManager.getConnection(dburl, dbuser, dbpw); // (1) 접속 정보를 가지고서
+		 * DB에 연결한다. System.out.println(conn + "<-- conn"); // 디버깅 코드
+		 */	
+		conn = DBUtil.getConnection();
 		String sql = "select category_name categoryName FROM category ORDER BY category_name ASC";
 		// catagory_name을 가져오는 쿼리문을 문자열 변수 sql에 저장한다. 
 		
@@ -112,12 +117,15 @@ public class BoardDao {
 	public int deleteBoard(int boardNo, String boardPw) throws Exception {
 		Board board = null;
 		
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
+		
 		Connection conn = null;
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
 		
 		PreparedStatement stmt = conn.prepareStatement("delete from board where board_no=? and board_pw=?");
 		stmt.setInt(1, boardNo);
@@ -136,11 +144,10 @@ public class BoardDao {
 	
 	public int updateBoard(Board board) throws Exception {
 	// 예외 처리 이유는? 
-		Class.forName("org.mariadb.jdbc.Driver");
-		// 마리아 DB 드라이버 로딩 
-		System.out.println("드라이브 로딩 완료"); 
-		// 디버깅 코드 
-		
+	/*
+	 * Class.forName("org.mariadb.jdbc.Driver"); // 마리아 DB 드라이버 로딩
+	 * System.out.println("드라이브 로딩 완료"); // 디버깅 코드
+	 */		
 		Connection conn = null;
 		// DB와 연결할 객체 선언 
 		String dburl = "jdbc:mariadb://localhost:3306/blog"; 
@@ -149,10 +156,12 @@ public class BoardDao {
 		// 아이디 저장
 		String dbpw = "mariadb1234"; 
 		// 비번 저장
-		conn = DriverManager.getConnection(dburl,dbuser,dbpw);
-		// 마리아 DB와 연결 
-		System.out.println(conn+"<--conn"); 
-		// 디버깅
+		/*
+		 * conn = DriverManager.getConnection(dburl,dbuser,dbpw); // 마리아 DB와 연결
+		 * System.out.println(conn+"<--conn"); // 디버깅
+		 */		
+		
+		conn = DBUtil.getConnection();
 		
 		String boardOneSql = "update board set category_name=?,board_title=?,board_content=?,update_date=now() where board_no=? and board_pw=?";
 		// 문자열 변수에 실행하려는 쿼리문 작성 
@@ -181,7 +190,7 @@ public class BoardDao {
 	public Board selectBoardOne(int boardNo) throws Exception {
 		Board board = null;
 		// vo 패키지 밑에 만든 Board 초기화 
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		
@@ -190,8 +199,9 @@ public class BoardDao {
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
 
+		conn = DBUtil.getConnection();
 		String boardOneSql = "select board_no boardNo, category_name categoryName, board_title boardTitle, board_content boardContent, board_pw boardPw, create_date createDate, update_date updateDate from board WHERE board_no = ?";
 		// String sql = "SELECT guestbook_no guestbookNo, guestbook_content guestbookContent FROM guestbook WHERE guestbook_no = ?";
 		// board_no를 기준으로 board테이블의 전체 컬럼을 가져오는 쿼리문을 문자열 변수 boardOneSql에 저장한다. 
@@ -226,11 +236,10 @@ public class BoardDao {
 	public Board selectBoardOne2(int boardNo) throws Exception {
 		Board board = null;
 		
-		Class.forName("org.mariadb.jdbc.Driver");
-		// 마리아 DB 드라이버 로딩 
-		System.out.println("드라이버 로딩 성공(boardList.jsp)");
-		// 디버깅 코드 
-		
+		/*
+		 * Class.forName("org.mariadb.jdbc.Driver"); // 마리아 DB 드라이버 로딩
+		 * System.out.println("드라이버 로딩 성공(boardList.jsp)"); // 디버깅 코드
+		 */		
 		Connection conn = null;
 		// DB와 연결하는 객체 선언 
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
@@ -239,10 +248,12 @@ public class BoardDao {
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
 		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
-		// DB에 연결
-		System.out.println(conn + " <-- conn(boardList.jsp)");
-		// 디버깅 코드
+		/*
+		 * conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB에 연결
+		 * System.out.println(conn + " <-- conn(boardList.jsp)"); // 디버깅 코드
+		 */		
+		
+		conn = DBUtil.getConnection();
 		
 		String boardOneSql = "select board_no boardNo, category_name categoryName, board_title boardTitle, board_content boardContent, board_pw boardPw, create_date createDate, update_date updateDate from board where board_no=? order by create_date desc limit 0,10";
 		// 문자열 변수 boardSql에 board테이블 전체 컬럼중 pw제외하고 출력한다. 이 떄 board_no값을 비교해보고 가져온다.
@@ -278,11 +289,11 @@ public class BoardDao {
 	}
 	
 	public ArrayList<HashMap<String, Object>> selectCategoryCount() throws Exception {
-		Class.forName("org.mariadb.jdbc.Driver");
-		// 마리아 DB 드라이버 로딩 
-		System.out.println("드라이버 로딩 성공 <-- BoardDao.selectCategoryCount() ");
-		// 디버깅 코드 
-		
+		/*
+		 * Class.forName("org.mariadb.jdbc.Driver"); // 마리아 DB 드라이버 로딩
+		 * System.out.println("드라이버 로딩 성공 <-- BoardDao.selectCategoryCount() "); // 디버깅
+		 * 코드
+		 */		
 		Connection conn = null;
 		// DB와 연결하는 객체 선언 
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
@@ -291,11 +302,11 @@ public class BoardDao {
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
 		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
-		// DB에 연결
-		System.out.println(conn + " <-- conn(boardList.jsp)");
-		// 디버깅 코드
-		
+		/*
+		 * conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB에 연결
+		 * System.out.println(conn + " <-- conn(boardList.jsp)"); // 디버깅 코드
+		 */		
+		conn = DBUtil.getConnection();
 		/*
 			SELECT category_name categoryName, COUNT(*) cnt
 			FROM board
@@ -328,8 +339,10 @@ public class BoardDao {
 	
 	public ArrayList<Board> selectBoardList(int rowPerPage, int beginRow, String categoryName) throws Exception {
 		
-		Class.forName("org.mariadb.jdbc.Driver");
-		System.out.println("드라이버 로딩 성공 <-- BoardDao.selectBoardList() ");
+		/*
+		 * Class.forName("org.mariadb.jdbc.Driver");
+		 * System.out.println("드라이버 로딩 성공 <-- BoardDao.selectBoardList() ");
+		 */
 		
 		Connection conn = null;
 		// DB와 연결하는 인스턴스 선언 
@@ -339,11 +352,12 @@ public class BoardDao {
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
 		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
-		// DB에 연결
-		System.out.println(conn + " <-- conn // BoardDao.selectBoardList() ");
-		// 디버깅 코드
-		
+		/*
+		 * conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB에 연결
+		 * System.out.println(conn + " <-- conn // BoardDao.selectBoardList() "); // 디버깅
+		 * 코드
+		 */		
+		conn = DBUtil.getConnection();
 		// boardList
 		String boardSql = null;
 		// 쿼리를 저장할 문자열 변수 선언 후 null로 초기화 
@@ -391,11 +405,10 @@ public class BoardDao {
 	public int selectTotalRow() throws Exception {
 		int totalRow = 0; 
 		
-		Class.forName("org.mariadb.jdbc.Driver");
-		// 마리아 DB 드라이버 로딩 
-		System.out.println("드라이버 로딩 성공 <-- BoardDao.selectTotalRow() ");
-		// 디버깅 코드 
-		
+		/*
+		 * Class.forName("org.mariadb.jdbc.Driver"); // 마리아 DB 드라이버 로딩
+		 * System.out.println("드라이버 로딩 성공 <-- BoardDao.selectTotalRow() "); // 디버깅 코드
+		 */		
 		Connection conn = null;
 		// DB와 연결하는 객체 선언 
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
@@ -404,10 +417,13 @@ public class BoardDao {
 		// 연결하려는 DB의 아이디를 문자열 변수에 저장 
 		String dbpw = "mariadb1234";
 		// 연결하려는 DB의 패스워드를 문자열 변수에 저장 
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
-		// DB에 연결
-		System.out.println(conn + " <-- conn // BoardDao.selectTotalRow() ");
-		// 디버깅 코드
+		/*
+		 * conn = DriverManager.getConnection(dburl, dbuser, dbpw); // DB에 연결
+		 * System.out.println(conn + " <-- conn // BoardDao.selectTotalRow() "); // 디버깅
+		 * 코드
+		 */		
+		
+		conn = DBUtil.getConnection();
 		
 		String totalRowSql = "select count(*) cnt from board";
 		PreparedStatement totalRowStmt = conn.prepareStatement(totalRowSql); 

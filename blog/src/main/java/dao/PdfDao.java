@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import util.DBUtil;
 import vo.Pdf;
 import vo.Photo;
 
@@ -16,7 +17,7 @@ public class PdfDao {
 		String pdfName = "";
 		// select pdf_name pdfName from pdf where pdf_no = ? 
 		
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -28,7 +29,10 @@ public class PdfDao {
 		
 		String sql ="select pdf_name pdfName from pdf where pdf_no = ? ";
 				
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
+		
 		stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, pdfNo);
 		
@@ -43,7 +47,7 @@ public class PdfDao {
 	}
 	
 	public void insertPdf(Pdf pdf) throws Exception {
-		Class.forName("org.mariadb.jdbc.Driver");
+		// Class.forName("org.mariadb.jdbc.Driver");
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -54,7 +58,11 @@ public class PdfDao {
 		
 		String sql = "insert into pdf(pdf_name, pdf_original_name, pdf_type, pdf_pw, writer, create_date, update_date) values (?,?,?,?,?,now(),now())";
 	
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		// conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		
+		conn = DBUtil.getConnection();
+		
+		
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, pdf.getPdfName());
 		// 이 부분 제대로 구현한것일까? 
@@ -76,14 +84,16 @@ public class PdfDao {
 	public int deletePdf(int pdfNo, String pdfPw) throws Exception { // 입력 photoNo, photoPw
 		int row = 0;
 		
-		Class.forName("org.mariadb.jdbc.Driver");
+		// Class.forName("org.mariadb.jdbc.Driver");
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		// conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		
+		conn = DBUtil.getConnection();
 
 		String sql = "DELETE FROM pdf WHERE pdf_no=? AND pdf_pw=?";
 		stmt = conn.prepareStatement(sql);
@@ -104,7 +114,7 @@ public class PdfDao {
 			ArrayList<Pdf> list = new ArrayList<Pdf>();
 			// photo 10행씩 반환되도록 구현 예정 
 			
-			Class.forName("org.mariadb.jdbc.Driver");
+			// Class.forName("org.mariadb.jdbc.Driver");
 			
 			// 데이터베이스 자원 준비
 			Connection conn = null;
@@ -116,7 +126,10 @@ public class PdfDao {
 			String dbpw = "mariadb1234";
 			
 			String sql = "select pdf_no pdfNo, pdf_name pdfName, writer, create_date createDate FROM pdf ORDER BY create_date DESC LIMIT ?, ?";
-			conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+			// conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+			
+			conn = DBUtil.getConnection();
+			
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, beginRow);
 			stmt.setInt(2, rowPerPage);
@@ -145,7 +158,7 @@ public class PdfDao {
 		public Pdf selectPdfOne(int pdfNo) throws Exception {
 			Pdf pdf = null; 
 			
-			Class.forName("org.mariadb.jdbc.Driver");
+			// Class.forName("org.mariadb.jdbc.Driver");
 			
 			Connection conn = null;
 			PreparedStatement stmt = null;
@@ -154,7 +167,9 @@ public class PdfDao {
 			String dburl = "jdbc:mariadb://localhost:3306/blog";
 			String dbuser = "root";
 			String dbpw = "mariadb1234";
-			conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+			// conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+			
+			conn = DBUtil.getConnection();
 			
 			String sql = "select pdf_no pdfNo, pdf_name pdfName FROM pdf WHERE pdf_no = ?";
 			stmt = conn.prepareStatement(sql);
@@ -178,7 +193,7 @@ public class PdfDao {
 		public int selectPdfTotalRow() throws Exception {
 			int total = 0;
 			
-			Class.forName("org.mariadb.jdbc.Driver");
+			// Class.forName("org.mariadb.jdbc.Driver");
 			// 데이터베이스 자원 준비
 			Connection conn = null;
 			PreparedStatement stmt = null;
@@ -189,7 +204,10 @@ public class PdfDao {
 			String dbpw = "mariadb1234";
 			
 			String sql = "SELECT COUNT(*) cnt FROM pdf";
-			conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+			// conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+			
+			conn = DBUtil.getConnection();
+			
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			if (rs.next()) {

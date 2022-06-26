@@ -1,6 +1,8 @@
 package dao;
 
 import java.util.ArrayList;
+
+import util.DBUtil;
 import vo.Guestbook;
 import java.sql.*;
 
@@ -14,7 +16,7 @@ public class GuestbookDao {
 	// updateGuestbookForm.jsp에서 호출
 	public Guestbook selectGuestbookOne(int guestbookNo) throws Exception {
 		Guestbook guestbook = null;
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -22,7 +24,9 @@ public class GuestbookDao {
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
 
 		String sql = "SELECT guestbook_no guestbookNo, guestbook_content guestbookContent FROM guestbook WHERE guestbook_no = ?";
 		stmt = conn.prepareStatement(sql);
@@ -47,14 +51,16 @@ public class GuestbookDao {
 	// -> Guestbook 타입을 사용
 	public int updateGuestbook(Guestbook guestbook) throws Exception {
 		int row = 0;
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
 
 		String sql = "UPDATE guestbook SET guestbook_content=? WHERE guestbook_no=? AND guestbook_pw=?";
 		stmt = conn.prepareStatement(sql);
@@ -78,14 +84,16 @@ public class GuestbookDao {
 	// 된다.)
 	public int deleteGuestbook(int guestbookNo, String guestbookPw) throws Exception {
 		int row = 0;
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		Connection conn = null;
 		PreparedStatement stmt = null;
 
 		String dburl = "jdbc:mariadb://localhost:3306/blog";
 		String dbuser = "root";
 		String dbpw = "mariadb1234";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
 
 		String sql = "DELETE FROM guestbook WHERE guestbook_no=? AND guestbook_pw=?";
 		stmt = conn.prepareStatement(sql);
@@ -102,7 +110,7 @@ public class GuestbookDao {
 
 	// 입력 프로세스 insertGuestbookAction.jsp에서 호출
 	public void insertGuestbook(Guestbook guestbook) throws Exception {
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		// 위처럼 null로 선언한 것들이 필요할 떄와 필요하지 않을 떄 구분해서 생각을 해보자. 
@@ -115,7 +123,10 @@ public class GuestbookDao {
 		 * update_date ) VALUES(?,?,?,NOW(),NOW())
 		 */
 		String sql = "INSERT INTO guestbook(guestbook_content, writer, guestbook_pw, create_date, update_date) VALUES(?,?,?,NOW(),NOW())";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
+		
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, guestbook.getGuestbookContent());
 		stmt.setString(2, guestbook.getWriter());
@@ -133,7 +144,7 @@ public class GuestbookDao {
 	// guestbook 전체 행의 수를 반환 메서드
 	public int selectGuestbookTotalRow() throws Exception {
 		int row = 0;
-		Class.forName("org.mariadb.jdbc.Driver");
+		/* Class.forName("org.mariadb.jdbc.Driver"); */
 		// 데이터베이스 자원 준비
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -144,7 +155,10 @@ public class GuestbookDao {
 		String dbpw = "mariadb1234";
 
 		String sql = "SELECT COUNT(*) cnt FROM guestbook";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
+		
 		stmt = conn.prepareStatement(sql);
 		rs = stmt.executeQuery();
 		if (rs.next()) {
@@ -157,7 +171,7 @@ public class GuestbookDao {
 	public ArrayList<Guestbook> selectGuestbookListByPage(int beginRow, int rowPerPage) throws Exception {
 		ArrayList<Guestbook> list = new ArrayList<Guestbook>();
 		// guestbook 10행 반환되도록 구현
-		Class.forName("org.mariadb.jdbc.Driver");
+//		Class.forName("org.mariadb.jdbc.Driver");
 
 		// 데이터베이스 자원 준비
 		Connection conn = null;
@@ -172,7 +186,10 @@ public class GuestbookDao {
 		 * create_date createDate FROM guestbook ORDER BY create_date DESC LIMIT ?, ?
 		 */
 		String sql = "SELECT guestbook_no guestbookNo, guestbook_content guestbookContent, writer, create_date createDate FROM guestbook ORDER BY create_date DESC LIMIT ?, ?";
-		conn = DriverManager.getConnection(dburl, dbuser, dbpw);
+		/* conn = DriverManager.getConnection(dburl, dbuser, dbpw); */
+		
+		conn = DBUtil.getConnection();
+		
 		stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, beginRow);
 		stmt.setInt(2, rowPerPage);
